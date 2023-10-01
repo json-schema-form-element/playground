@@ -134,6 +134,8 @@ export const schema: JSONSchema7 = {
 		// 			default: false,
 		// 		},
 		// 	],
+
+		// TODO:
 		// 	additionalItems: {
 		// 		title: 'A string',
 		// 		type: 'string',
@@ -148,7 +150,6 @@ export const ui = {};
 export const data = {
 	listOfStrings: ['foo', 'bar'],
 	multipleChoicesList: ['foo', 'bar'],
-	// eslint-disable-next-line max-lines
 	fixedItemsList: ['Some text', true, 123],
 	minItemsList: [
 		{

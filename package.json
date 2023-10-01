@@ -1,7 +1,7 @@
 {
   "name": "@jsfe/playground",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^10.1.0",
+    "@humanwhocodes/momoa": "^3.0.0",
     "@jsfe/core": "link:../core",
     "@shoelace-style/shoelace": "^2.8.0",
     "@types/json-schema": "^7.0.12",
@@ -18,7 +19,8 @@
     "highlight.js": "^11.8.0",
     "json-schema-merge-allof": "^0.8.1",
     "lit": "^2.7.6",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "split.js": "^1.6.5"
   },
   "devDependencies": {
     "@playwright/test": "^1.38.0",

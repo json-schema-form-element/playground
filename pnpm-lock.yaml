@@ -8,6 +8,9 @@ dependencies:
   '@apidevtools/json-schema-ref-parser':
     specifier: ^10.1.0
     version: 10.1.0
+  '@humanwhocodes/momoa':
+    specifier: ^3.0.0
+    version: 3.0.0
   '@jsfe/core':
     specifier: link:../core
     version: link:../core
@@ -32,6 +35,9 @@ dependencies:
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
+  split.js:
+    specifier: ^1.6.5
+    version: 1.6.5
 
 devDependencies:
   '@playwright/test':
@@ -706,6 +712,11 @@ packages:
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
     dev: true
+
+  /@humanwhocodes/momoa@3.0.0:
+    resolution: {integrity: sha512-w9ZDr0lxELbpdzQPmNpYxKHCq4IrG9ZaGFMmzvlbk4zA7+t/zSONCqrp8Tzg17vo2ZJlkL1jS87codK0W5uovQ==}
+    engines: {node: '>=18'}
+    dev: false
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
@@ -3799,6 +3810,10 @@ packages:
   /spdx-license-ids@3.0.13:
     resolution: {integrity: sha512-XkD+zwiqXHikFZm4AX/7JSCXA98U5Db4AFd5XUg/+9UNtnH75+Z9KxtpYiJZx36mUDVOwH83pl7yvCer6ewM3w==}
     dev: true
+
+  /split.js@1.6.5:
+    resolution: {integrity: sha512-mPTnGCiS/RiuTNsVhCm9De9cCAUsrNFFviRbADdKiiV+Kk8HKp/0fWu7Kr8pi3/yBmsqLFHuXGT9UUZ+CNLwFw==}
+    dev: false
 
   /sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}

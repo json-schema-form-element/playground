@@ -1,0 +1,57 @@
+/* stylelint-disable selector-class-pattern */
+// TODO: Dark and light custom themes
+
+.hljs-comment,
+.hljs-quote {
+	color: var(--sl-color-gray-300);
+}
+
+.hljs-deletion,
+.hljs-name,
+.hljs-regexp,
+.hljs-selector-class,
+.hljs-selector-id,
+.hljs-tag,
+.hljs-template-variable,
+.hljs-variable {
+	color: var(--sl-color-orange-600);
+}
+
+.hljs-built_in,
+.hljs-link,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-params,
+.hljs-type {
+	color: var(--sl-color-yellow-600);
+}
+
+.hljs-attribute {
+	color: var(--sl-color-amber-600);
+}
+
+.hljs-addition,
+.hljs-bullet,
+.hljs-string,
+.hljs-symbol {
+	color: var(--sl-color-sky-600);
+}
+
+.hljs-section,
+.hljs-title {
+	color: var(--sl-color-green-600);
+}
+
+.hljs-keyword,
+.hljs-selector-tag {
+	color: var(--sl-color-pink-600);
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: 700;
+}

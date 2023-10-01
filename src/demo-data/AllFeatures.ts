@@ -90,6 +90,14 @@ export const schema: JSONSchema7 = {
 							maximum: 50,
 							multipleOf: 25,
 						},
+						rating: {
+							title: 'Rating',
+							description: '10 stars, With half star precision.',
+							type: 'number',
+							minimum: 0,
+							maximum: 10,
+							multipleOf: 0.5,
+						},
 					},
 				},
 				boolean: {
@@ -301,6 +309,9 @@ export const ui: UiSchema = {
 			},
 			rangeConstrained: {
 				'ui:widget': 'range',
+			},
+			rating: {
+				'ui:widget': 'rating',
 			},
 		},
 		boolean: {
