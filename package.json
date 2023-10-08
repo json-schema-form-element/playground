@@ -1,21 +1,35 @@
 {
   "name": "@jsfe/playground",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.4",
+  "repository": {
+    "url": "https://github.com/json-schema-form-element/playground"
+  },
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
     "deploy:demo": "netlify deploy -d dist",
+    "dev": "vite",
     "preview": "vite preview"
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^10.1.0",
+    "@carbon/styles": "^1.39.0",
+    "@carbon/type": "^11.24.0",
     "@humanwhocodes/momoa": "^3.0.0",
-    "@jsfe/core": "link:../core",
+    "@j_c/jsfe__carbon": "link:../jsfe/packages/carbon",
+    "@j_c/jsfe__form": "link:../jsfe/packages/form",
+    "@j_c/jsfe__material": "link:../jsfe/packages/material",
+    "@j_c/jsfe__shoelace": "link:../jsfe/packages/shoelace",
+    "@j_c/jsfe__system": "link:../jsfe/packages/system",
+    "@j_c/jsfe__wired": "link:../jsfe/packages/wired",
+    "@material/material-color-utilities": "^0.2.7",
+    "@material/web": "^1.0.0",
     "@shoelace-style/shoelace": "^2.8.0",
     "@types/json-schema": "^7.0.12",
     "@types/lodash-es": "^4.17.9",
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
     "highlight.js": "^11.8.0",
     "json-schema-merge-allof": "^0.8.1",
     "lit": "^2.7.6",
@@ -40,6 +54,7 @@
     "eslint-plugin-lit-a11y": "^4.1.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-tsdoc": "^0.2.17",
+    "hsl-to-rgb-for-reals": "^1.1.1",
     "playwright": "^1.38.0",
     "prettier": "^3.0.3",
     "rollup-plugin-minify-html-literals": "^1.2.6",
@@ -58,8 +73,5 @@
     "vite": "^4.4.5",
     "vite-plugin-dts": "^3.5.3",
     "vite-plugin-static-copy": "^0.17.0"
-  },
-  "repository": {
-    "url": "https://github.com/json-schema-form-element/playground"
   }
 }

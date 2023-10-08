@@ -4,35 +4,34 @@ import type { UiSchema, JSONSchema7 } from '@jsfe/core';
 export const schema: JSONSchema7 = {
 	title: 'All Features',
 	properties: {
-		object: {
+		Object: {
 			title: 'Object type',
 			description: 'Nests each property to a field in a fieldset.',
 			required: ['textBar'],
 			properties: {
-				textFoo: {
+				TextFoo: {
 					title: 'Some text input',
 					type: 'string',
 					description: 'The help text is from "description".',
 				},
-				textBar: {
+				TextBar: {
 					title: 'Some other -required- text input',
 					type: 'string',
 				},
 			},
 		},
-		primitive: {
+		Primitives: {
 			title: 'Primitive field types',
 			properties: {
-				string: {
-					title: 'String',
+				Strings: {
 					required: ['stringConstrained'],
 					properties: {
-						simpleString: {
+						SimpleString: {
 							title: 'Simple inline string',
 							type: 'string',
 							default: 'With default value from schema',
 						},
-						stringConstrained: {
+						StringConstrained: {
 							title: 'String with constraints',
 							type: 'string',
 							pattern: '^[A-Z \\d\\W]+$',
@@ -40,33 +39,36 @@ export const schema: JSONSchema7 = {
 							maxLength: 10,
 							description: 'Only UPPERCASE with 2 to 10 characters is allowed.',
 						},
-						textArea: {
+						TextArea: {
 							title: 'Text area',
 							description: 'Using UI schema options.',
 							type: 'string',
+							minLength: 100,
+							maxLength: 1200,
 						},
-						color: {
+						Color: {
 							title: 'Color picker',
 							type: 'string',
 							default: '#4a90e2',
+							description: 'Choose a nice color!',
 						},
 					},
 				},
-				number: {
-					title: 'Number',
+
+				Numbers: {
 					properties: {
-						float: {
+						Float: {
 							title: 'Number (float)',
 							// description: 'Using "ui:widget: textarea" in UI schema.',
 							type: 'number',
 						},
-						integer: {
+						Integer: {
 							default: 5,
 							title: 'Number (integer)',
 							// description: 'Using "ui:widget: tadditional item oneextarea" in UI schema.',
 							type: 'integer',
 						},
-						numberConstrained: {
+						NumberConstrained: {
 							title: 'Number with constraints',
 							description: 'min + max + multiple of',
 							type: 'integer',
@@ -75,13 +77,13 @@ export const schema: JSONSchema7 = {
 							maximum: 100,
 							multipleOf: 10,
 						},
-						range: {
+						Range: {
 							title: 'Range with default',
 							default: 28,
-							// description: 'Using "ui:widget: textarea" in UI schema.',
+							description: 'Using "ui:widget: range" in UI schema.',
 							type: 'integer',
 						},
-						rangeConstrained: {
+						RangeConstrained: {
 							title: 'Range  with constraints',
 							// description: 'Using "ui:widget: textarea" in UI schema.',
 							type: 'integer',
@@ -90,7 +92,7 @@ export const schema: JSONSchema7 = {
 							maximum: 50,
 							multipleOf: 25,
 						},
-						rating: {
+						Rating: {
 							title: 'Rating',
 							description: '10 stars, With half star precision.',
 							type: 'number',
@@ -100,45 +102,46 @@ export const schema: JSONSchema7 = {
 						},
 					},
 				},
-				boolean: {
-					title: 'Boolean',
+				Booleans: {
+					required: ['checkbox', 'radioWithDefault'],
 					properties: {
-						checkbox: {
+						Checkbox: {
 							title: 'Checkbox (default)',
 							type: 'boolean',
+							description: 'Check me!',
 						},
-						switch: {
+						Switch: {
 							title: 'Switch, enabled by default',
 							type: 'boolean',
 							default: true,
 						},
-						radio: {
+						Radio: {
 							title: 'Radio',
 							type: 'boolean',
 						},
-						radioWithDefault: {
+						RadioWithDefault: {
 							title: 'Radio, with default',
 							type: 'boolean',
 							default: false,
 						},
-						buttonGroup: {
-							title: 'Button group',
+						ButtonsGroup: {
+							title: 'Buttons group',
 							type: 'boolean',
 						},
 					},
 				},
-				enumeration: {
-					title: 'Enumeration',
+				Enumerations: {
 					properties: {
-						select: {
+						Selects: {
+							required: ['number'],
 							title: 'Select menu (default)',
 							properties: {
-								string: {
+								String: {
 									title: 'String',
 									type: 'string',
 									enum: ['Ola', 'Hello', 'Bonjour', 'Buongiorno', 'Guten Tag'],
 								},
-								number: {
+								Number: {
 									title: 'Number',
 									type: 'number',
 									enum: [10, 100, 1_000, 10_000],
@@ -147,15 +150,15 @@ export const schema: JSONSchema7 = {
 								},
 							},
 						},
-						radio: {
-							title: 'Radio group',
+						Radios: {
+							title: 'Radios group',
 							properties: {
-								string: {
+								String: {
 									title: 'String',
 									type: 'string',
 									enum: ['Ola', 'Hello', 'Bonjour', 'Buongiorno', 'Guten Tag'],
 								},
-								number: {
+								Number: {
 									title: 'Number',
 									type: 'number',
 									enum: [10, 100, 1_000, 10_000],
@@ -164,17 +167,17 @@ export const schema: JSONSchema7 = {
 								},
 							},
 						},
-						buttonGroup: {
-							title: 'Button group',
+						Buttons: {
+							title: 'Buttons group',
 							properties: {
-								string: {
+								String: {
 									title: 'String',
 									type: 'string',
 									enum: ['Ola', 'Hello', 'Bonjour', 'Buongiorno', 'Guten Tag'],
 									default: 'Ola',
 									description: 'With default value set',
 								},
-								number: {
+								Number: {
 									title: 'Number',
 									type: 'number',
 									enum: [10, 100, 1_000, 10_000],
@@ -183,21 +186,21 @@ export const schema: JSONSchema7 = {
 						},
 					},
 				},
-				date: {
+				Date: {
 					title: 'Date and time',
 					properties: {
-						datetime: {
+						DateTime: {
 							title: 'Date and time',
 							type: 'string',
 							format: 'date-time',
 							description: 'Hurry up!',
 						},
-						date: {
+						Date: {
 							title: 'Date',
 							type: 'string',
 							format: 'date',
 						},
-						time: {
+						Time: {
 							title: 'Time',
 							type: 'string',
 							format: 'time',
@@ -207,12 +210,11 @@ export const schema: JSONSchema7 = {
 			},
 		},
 
-		array: {
-			title: 'Array',
+		Arrays: {
 			properties: {
-				basic: {
-					type: 'array',
+				Basic: {
 					title: 'Basic array',
+					type: 'array',
 					items: {
 						properties: {
 							textA: {
@@ -227,7 +229,7 @@ export const schema: JSONSchema7 = {
 					},
 				},
 
-				fixed: {
+				Fixed: {
 					title: 'Fixed array',
 					type: 'array',
 					items: [
@@ -254,7 +256,7 @@ export const schema: JSONSchema7 = {
 					],
 				},
 
-				prepopulatedNested: {
+				PrepopulatedNested: {
 					title: 'Prepopulated and nested arrays',
 					type: 'array',
 					items: {
@@ -268,7 +270,7 @@ export const schema: JSONSchema7 = {
 					},
 				},
 
-				multipleChoices: {
+				MultipleChoices: {
 					title: 'A multiple choices list with checkboxes',
 					type: 'array',
 					uniqueItems: true,
@@ -293,68 +295,68 @@ export const schema: JSONSchema7 = {
 };
 
 export const ui: UiSchema = {
-	primitive: {
-		string: {
-			textArea: {
+	Primitives: {
+		Strings: {
+			TextArea: {
 				'ui:widget': 'textarea',
 				'ui:placeholder': 'This is a placeholder',
 			},
-			color: {
+			Color: {
 				'ui:widget': 'color',
 			},
 		},
-		number: {
-			range: {
+		Numbers: {
+			Range: {
 				'ui:widget': 'range',
 			},
-			rangeConstrained: {
+			RangeConstrained: {
 				'ui:widget': 'range',
 			},
-			rating: {
+			Rating: {
 				'ui:widget': 'rating',
 			},
 		},
-		boolean: {
-			switch: {
+		Booleans: {
+			Switch: {
 				'ui:widget': 'switch',
 			},
-			radio: {
+			Radio: {
 				'ui:widget': 'radio',
 			},
-			radioWithDefault: {
+			RadioWithDefault: {
 				'ui:widget': 'radio',
 			},
-			buttonGroup: {
-				'ui:widget': 'button-group',
+			ButtonsGroup: {
+				'ui:widget': 'button',
 			},
 		},
-		enumeration: {
-			radio: {
-				string: {
+		Enumerations: {
+			Radios: {
+				String: {
 					'ui:widget': 'radio',
 				},
-				number: {
+				Number: {
 					'ui:widget': 'radio',
 				},
 			},
-			buttonGroup: {
-				string: {
-					'ui:widget': 'button-group',
+			ButtonsGroup: {
+				String: {
+					'ui:widget': 'button',
 				},
-				number: {
-					'ui:widget': 'button-group',
+				Number: {
+					'ui:widget': 'button',
 				},
 			},
 
 			// buttonGroup: {
-			// 	'ui:widget': 'button-group',
+			// 	'ui:widget': 'button',
 			// },
 		},
 	},
 };
 
 export const data = {
-	array: {
-		prepopulatedNested: [['Hello', 'Ola']],
+	Arrays: {
+		PrepopulatedNested: [['Hello', 'Ola']],
 	},
 };

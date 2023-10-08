@@ -18,5 +18,10 @@ body {
 	height: 100vh;
 	padding: 0;
 	margin: 0;
-	background-color: var(--sl-color-neutral-0);
+}
+
+html.sl-theme-dark {
+	body {
+		background-color: var(--sl-color-neutral-0);
+	}
 }
