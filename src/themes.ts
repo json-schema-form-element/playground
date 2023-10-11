@@ -15,6 +15,8 @@ export const libraries = [
 	['system', 'System'],
 ] as const;
 
+export type Theme = (typeof libraries)[number][0];
+
 export const slColorToMwc = {
 	gray: [240, 3.8, 46.1],
 	red: [0, 84.2, 60.2],
@@ -38,11 +40,11 @@ export const slColorToMwc = {
 
 // ----
 
-import { widgets as shoelaceWidgets } from '@j_c/jsfe__shoelace';
-import { widgets as materialWidgets } from '@j_c/jsfe__material';
-import { widgets as wiredWidgets } from '@j_c/jsfe__wired';
-import { widgets as carbonWidgets } from '@j_c/jsfe__carbon';
-import { widgets as systemWidgets } from '@j_c/jsfe__system';
+import { widgets as shoelaceWidgets } from '@jsfe/shoelace';
+import { widgets as materialWidgets } from '@jsfe/material';
+import { widgets as wiredWidgets } from '@jsfe/wired';
+import { widgets as carbonWidgets } from '@jsfe/carbon';
+import { widgets as systemWidgets } from '@jsfe/system';
 
 export const widgets = {
 	shoelace: shoelaceWidgets,
@@ -52,14 +54,14 @@ export const widgets = {
 	system: systemWidgets,
 };
 
-import { styles as jsfeStyles } from '@j_c/jsfe__form/jss';
-import { styles as jsfeShoelaceStyles } from '@j_c/jsfe__shoelace/jss';
-import { styles as jsfeMaterialStyles } from '@j_c/jsfe__material/jss';
-import { styles as jsfeWiredStyles } from '@j_c/jsfe__wired/jss';
-import { styles as jsfeCarbonStyles } from '@j_c/jsfe__carbon/jss';
+// import { styles as jsfeStyles } from '@jsfe/form/jss';
+import { styles as jsfeShoelaceStyles } from '@jsfe/shoelace/jss';
+import { styles as jsfeMaterialStyles } from '@jsfe/material/jss';
+import { styles as jsfeWiredStyles } from '@jsfe/wired/jss';
+import { styles as jsfeCarbonStyles } from '@jsfe/carbon/jss';
 
 export const styleSheets = [
-	jsfeStyles,
+	// jsfeStyles,
 	jsfeShoelaceStyles,
 	jsfeMaterialStyles,
 	jsfeWiredStyles,
@@ -72,7 +74,7 @@ import '@shoelace-style/shoelace/dist/components/alert/alert.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 
 // import '@shoelace-style/shoelace/dist/components/switch/switch.js';
-// import '@shoelace-style/shoelace/dist/components/divider/divider.js';
+import '@shoelace-style/shoelace/dist/components/divider/divider.js';
 // import '@shoelace-style/shoelace/dist/components/split-panel/split-panel.js';
 import '@shoelace-style/shoelace/dist/components/breadcrumb/breadcrumb.js';
 import '@shoelace-style/shoelace/dist/components/breadcrumb-item/breadcrumb-item.js';
@@ -89,8 +91,8 @@ import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/tab/tab.js';
 import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js';
 import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
+import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
 
 setBasePath('/shoelace');
-

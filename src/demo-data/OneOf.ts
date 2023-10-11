@@ -1,4 +1,4 @@
-import { UiSchema } from '@jsfe/core';
+import { UiSchema } from '@jsfe/form';
 import type { JSONSchema7 } from 'json-schema';
 
 export const schema: JSONSchema7 = {

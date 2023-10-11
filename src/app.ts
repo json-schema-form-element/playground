@@ -15,6 +15,9 @@ import json from 'highlight.js/lib/languages/json';
 
 import Split from 'split.js';
 
+import { createRouter, openPage } from '@nanostores/router';
+import { StoreController } from '@nanostores/lit';
+
 import type { SlSelectionChangeEvent } from '@shoelace-style/shoelace';
 import type SlAlert from '@shoelace-style/shoelace/dist/components/alert/alert.js';
 import type SlTree from '@shoelace-style/shoelace/dist/components/tree/tree.js';
@@ -26,25 +29,25 @@ import {
 
 // -----------------------------------------------------------------------------
 
-import '@j_c/jsfe__form';
-import type { Jsf, Path, UiSchema, Theme, Widgets } from '@j_c/jsfe__form';
+import '@jsfe/form';
+import type { Jsf, Path, UiSchema, Widgets } from '@jsfe/form';
 
 // -----------------------------------------------------------------------------
 
 import appStyles from './app.scss?inline';
 
-import * as demoContent from './demo-data/index.js';
+import { demoContent } from './demo-data/index.js';
+import type { DemoContent, DemoName, SectionName } from './demo-data/index.js';
+
 import * as themes from './themes.js';
 
 import { findJsonPathLocation } from './utils/code.js';
 import { hslToArgb } from './utils/color.js';
 
-import { footer } from './components/footer.js';
-
-// -----------------------------------------------------------------------------
-
-type SectionName = keyof typeof demoContent;
-type DemoName = keyof (typeof demoContent)[SectionName];
+import { appInfos } from './components/app-infos.js';
+import { onMount } from 'nanostores';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { icons } from './components/icons.js';
 
 // -----------------------------------------------------------------------------
 
@@ -55,34 +58,52 @@ addFormats(ajv);
 
 // -----------------------------------------------------------------------------
 
+export const $router = createRouter({
+	demo: '/:sectionName/:demoName',
+});
+
+const defaultRoute: DemoContent = {
+	sectionName: 'Sink',
+	demoName: 'AllFeatures',
+};
+
+onMount($router, () => {
+	if (document.location.pathname === '/') {
+		openPage($router, 'demo', defaultRoute);
+	}
+});
+
+// -----------------------------------------------------------------------------
+
+type Tab = 'Schema' | 'Data' | 'UI schema';
+
 @customElement('jsfe-playground')
 export class JsfePlayground extends LitElement {
-	@state() private _selectedSectionName: SectionName = 'Rjsf';
+	protected _routerController = new StoreController(this, $router);
 
-	@state() private _selectedDemoName: DemoName = 'AllFeatures';
+	@state() private _selectedSectionName: SectionName =
+		(this._routerController.value?.params?.sectionName as
+			| SectionName
+			| undefined) ?? defaultRoute.sectionName;
+
+	@state() private _selectedDemoName: DemoName =
+		(this._routerController.value?.params?.demoName as DemoName | undefined) ??
+		defaultRoute.demoName;
 
 	@state() private _currentSchema = {};
 
-	@state() private _currentData: unknown =
-		demoContent[this._selectedSectionName][this._selectedDemoName].data;
+	@state() private _currentData: unknown = {};
 
-	@state() private _currentUiSchema: UiSchema =
-		demoContent[this._selectedSectionName][this._selectedDemoName].ui;
+	@state() private _currentUiSchema: UiSchema = {};
 
 	#toasterRef = createRef<SlAlert>();
 
 	@state() private _colorScheme: 'light' | 'dark' = 'dark';
 
-	@state() private _widgets: Partial<Record<Theme, Widgets>> = themes.widgets;
+	@state() private _widgets: Partial<Record<themes.Theme, Widgets>> =
+		themes.widgets;
 
-	@state() private _selectedTheme: Theme = 'shoelace';
-
-	_tabs = [
-		//
-		'Data',
-		'Schema',
-		'UI schema',
-	] as const;
+	@state() private _selectedTheme: themes.Theme = 'shoelace';
 
 	@state() private _compactMode = false;
 
@@ -92,7 +113,7 @@ export class JsfePlayground extends LitElement {
 		this.#bindResponsive();
 
 		this.#loadCurrentUrl();
-		this.loadForm(this._selectedSectionName, this._selectedDemoName);
+		this._loadForm(this._selectedSectionName, this._selectedDemoName);
 
 		this.#splitPanes();
 	}
@@ -100,7 +121,7 @@ export class JsfePlayground extends LitElement {
 	#loadCurrentUrl() {
 		const schemaNameFromUrl = window.location.pathname.substring(1);
 		if (schemaNameFromUrl in demoContent) {
-			this._selectedDemoName = schemaNameFromUrl as keyof typeof demoContent;
+			this._selectedDemoName = schemaNameFromUrl as DemoName;
 		}
 	}
 
@@ -192,14 +213,18 @@ export class JsfePlayground extends LitElement {
 		);
 	}
 
-	loadForm(sectionName: SectionName, demoName: DemoName) {
-		this._selectedDemoName = demoName;
-		this._currentData = demoContent[sectionName][demoName].data;
+	protected _loadForm(sectionName: SectionName, demoName: DemoName) {
+		if (sectionName in demoContent && demoName in demoContent[sectionName]) {
+			this._selectedDemoName = demoName;
+			this._currentData = demoContent[sectionName][demoName].data;
 
-		this._currentSchema = demoContent[sectionName][demoName].schema;
-		this._currentUiSchema = demoContent[sectionName][demoName].ui;
+			this._currentSchema = demoContent[sectionName][demoName].schema;
+			this._currentUiSchema = demoContent[sectionName][demoName].ui;
 
-		// window.history.replaceState(null, '', this._selectedDemoName);
+			openPage($router, 'demo', { sectionName, demoName });
+		} else {
+			this._loadForm(defaultRoute.sectionName, defaultRoute.demoName);
+		}
 	}
 
 	#scrollableRefs = {
@@ -225,8 +250,7 @@ export class JsfePlayground extends LitElement {
 
 	@state() private _activeUiSchemaLine: undefined | number;
 
-	@state() private _currentPath: Partial<Record<this['_tabs'][number], Path>> =
-		{};
+	@state() private _currentCodePaths: Partial<Record<Tab, Path>> = {};
 
 	#handleDataChange: Jsf['onDataChange'] = (
 		newData: unknown,
@@ -247,7 +271,7 @@ export class JsfePlayground extends LitElement {
 		// console.log({ uiSchemaLocation: uiSchemaLoc, path });
 		this._activeUiSchemaLine = uiSchemaLoc?.start.line;
 
-		this._currentPath = {
+		this._currentCodePaths = {
 			Data: this._activeDataLine ? path : undefined,
 			Schema: this._activeSchemaLine ? schemaPath : undefined,
 			'UI schema': this._activeUiSchemaLine ? path : undefined,
@@ -285,7 +309,7 @@ export class JsfePlayground extends LitElement {
 		} else this._errors = [];
 	}
 
-	#debugPrinter = (tabKey: this['_tabs'][number], focusable = false) => {
+	#debugPrinter = (tabKey: Tab, focusable = false) => {
 		const outputType = {
 			Data: [
 				this._currentData,
@@ -315,7 +339,7 @@ export class JsfePlayground extends LitElement {
 					${/* tabKey */ ''}
 					<!-- <div class="title">${tabKey}</div> -->
 					<sl-breadcrumb>
-						${[tabKey, ...(this._currentPath?.[tabKey] || [])]?.map(
+						${[tabKey, ...(this._currentCodePaths?.[tabKey] || [])]?.map(
 							(part) => html`<sl-breadcrumb-item>${part}</sl-breadcrumb-item> `,
 						)}
 					</sl-breadcrumb>
@@ -367,9 +391,29 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 						if (ui === lib) this._selectedTheme = ui;
 					});
 				}}
+				size="large"
 			>
 				${themes.libraries.map(
-					([v, library]) => html`<sl-radio value=${v}>${library}</sl-radio>`,
+					([v, library]) =>
+						html` <sl-radio value=${v}
+							><sl-tooltip
+								content=${ifDefined(
+									library !== 'Shoelace' ? 'Partial implementation' : undefined,
+								)}
+								placement="right"
+								.disabled=${library === 'Shoelace'}
+							>
+								<div class="theme-label">
+									${icons[library]
+										? html`<span class="uilib-icon">${icons[library]}</span>`
+										: nothing}
+									<span>${library}&nbsp;</span>
+									${library !== 'Shoelace'
+										? html`<sl-icon name="cone-striped"></sl-icon>`
+										: nothing}
+								</div>
+							</sl-tooltip></sl-radio
+						>`,
 				)}
 			</sl-radio-group>
 
@@ -421,17 +465,18 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 					const selection = (event as SlSelectionChangeEvent).detail.selection;
 
 					console.log((event.target as SlTree).selection);
-					selection.forEach((e) => {
-						console.log(e.dataset.demoName);
-						const { demoName, sectionName } = e.dataset;
+					selection.forEach((sEvent) => {
+						// NOTE: dataset is a bit cumbersome regarding typings. Maybe find a slicker way
+						// console.log(sEvent.dataset);
+						const { demoName, sectionName } = sEvent.dataset;
+
 						if (
 							sectionName &&
 							demoName &&
 							sectionName in demoContent &&
-							demoName in demoContent[this._selectedSectionName]
+							demoName in demoContent[sectionName as SectionName]
 						) {
-							// this._selectedDemoName = e.dataset.demoName as DemoName;
-							this.loadForm('Rjsf', demoName as DemoName);
+							this._loadForm(sectionName as SectionName, demoName as DemoName);
 						}
 					});
 				}}
@@ -483,7 +528,7 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 			.schema=${this._currentSchema}
 			.data=${this._currentData}
 			.uiSchema=${this._currentUiSchema}
-			.onDataChange=${this.#handleDataChange}
+			.dataChangeCallback=${this.#handleDataChange}
 			.submitCallback=${(newData: unknown, valid: boolean) => {
 				// this.currentData = data;
 				console.info({ newData, valid });
@@ -547,7 +592,24 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 			<!-- $ {this._compactMode} -->
 			<div class="wrapper">
 				<div class="demo-switcher">
-					${this.#tree()}
+					<nav class="main-nav">
+						<div>
+							<div class="lib-name">
+								<span
+									>JSON&nbsp;Schema <small>&lt;</small><strong>Form</strong
+									><small>&gt;</small>&nbsp;Element</span
+								>
+								<small>Playground</small>
+							</div>
+							<sl-divider></sl-divider>
+							${this.#tree()}
+						</div>
+
+						<div>
+							<sl-divider></sl-divider>
+							${appInfos(this._colorScheme === 'dark')}
+						</div>
+					</nav>
 					<main>${this.#form()}</main>
 				</div>
 
@@ -556,7 +618,6 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 
 			${this.#alertToaster()}
 			<!--  -->
-			${footer}
 		</div>`;
 	}
 

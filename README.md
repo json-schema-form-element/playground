@@ -10,5 +10,5 @@
 
 ---
 
-- See the [documentation](https://github.com/json-schema-form-element/core#readme).
+- See the [documentation](https://github.com/json-schema-form-element/jsfe#readme).
 - See the [examples](https://github.com/json-schema-form-element/examples#readme).

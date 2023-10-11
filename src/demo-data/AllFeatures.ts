@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import type { UiSchema, JSONSchema7 } from '@jsfe/core';
+import type { UiSchema, JSONSchema7 } from '@jsfe/form';
 
 export const schema: JSONSchema7 = {
 	title: 'All Features',
@@ -167,7 +167,7 @@ export const schema: JSONSchema7 = {
 								},
 							},
 						},
-						Buttons: {
+						ButtonsGroup: {
 							title: 'Buttons group',
 							properties: {
 								String: {
@@ -216,13 +216,14 @@ export const schema: JSONSchema7 = {
 					title: 'Basic array',
 					type: 'array',
 					items: {
+						title: 'Sub-object in array',
 						properties: {
 							textA: {
-								title: 'Some field A',
+								title: 'Field Alpha',
 								type: 'string',
 							},
 							textB: {
-								title: 'Some field B',
+								title: 'Field Beta',
 								type: 'string',
 							},
 						},
@@ -260,31 +261,61 @@ export const schema: JSONSchema7 = {
 					title: 'Prepopulated and nested arrays',
 					type: 'array',
 					items: {
-						title: 'Group',
+						title: 'Sub-array',
 						// title: 'Group',
 						type: 'array',
 						items: {
-							title: 'Some sub-field',
+							title: 'Field in sub-array',
 							type: 'string',
 						},
 					},
 				},
 
-				MultipleChoices: {
+				MultipleChoicesCheckboxes: {
 					title: 'A multiple choices list with checkboxes',
 					type: 'array',
 					uniqueItems: true,
 					description: 'Please choose yum yum.',
+					default: ['Baguette', 'Beaufort', 'Tomato', 'Avocado'],
 					items: {
+						// NOTE: Unused for now. Too noisy?
+						// title: 'Food',
+						// description: '...',
 						type: 'string',
 						enum: [
 							'Apple',
+							'Pineapple',
 							'Banana',
 							'Mango',
 							'Tomato',
 							'Baguette',
 							'Beaufort',
 							'Comté',
+							'Avocado',
+						],
+					},
+				},
+
+				MultipleChoicesSelect: {
+					title: 'A multiple choices list with select menu',
+					type: 'array',
+					uniqueItems: true,
+					description: 'Please choose yum yum for tomorrow.',
+					default: ['Apple', 'Avocado', 'Mango', 'Banana', 'Pineapple'],
+					items: {
+						// NOTE: Unused for now. Too noisy?
+						// title: 'Food',
+						// description: '...',
+						type: 'string',
+						enum: [
+							'Apple',
+							'Pineapple',
+							'Banana',
+							'Mango',
+							'Tomato',
+							'Baguette',
+							'Beaufort',
+							'Comté affiné',
 							'Avocado',
 						],
 					},
@@ -351,6 +382,12 @@ export const ui: UiSchema = {
 			// buttonGroup: {
 			// 	'ui:widget': 'button',
 			// },
+		},
+	},
+
+	Arrays: {
+		MultipleChoicesSelect: {
+			'ui:widget': 'select',
 		},
 	},
 };

@@ -7,7 +7,7 @@ export const schema: JSONSchema7 = {
 			title: 'Thing',
 			type: 'object',
 			properties: {
-				name: {
+				Name: {
 					title: 'Name',
 					type: 'string',
 					default: 'Default name',
@@ -15,10 +15,12 @@ export const schema: JSONSchema7 = {
 			},
 		},
 	},
+
 	title: 'Arrays',
 	type: 'object',
+
 	properties: {
-		listOfStrings: {
+		ListOfStrings: {
 			type: 'array',
 			title: 'A list of strings',
 			items: {
@@ -26,16 +28,19 @@ export const schema: JSONSchema7 = {
 				default: 'bazinga',
 			},
 		},
-		multipleChoicesList: {
+
+		MultipleChoicesList: {
 			type: 'array',
 			title: 'A multiple choices list',
 			items: {
 				type: 'string',
 				enum: ['foo', 'bar', 'fuzz', 'qux'],
 			},
+
 			uniqueItems: true,
 		},
-		fixedItemsList: {
+
+		FixedItemsList: {
 			type: 'array',
 			title: 'A list of fixed items',
 			items: [
@@ -44,6 +49,7 @@ export const schema: JSONSchema7 = {
 					type: 'string',
 					default: 'lorem ipsum',
 				},
+
 				{
 					title: 'a boolean value',
 					type: 'boolean',
@@ -55,7 +61,8 @@ export const schema: JSONSchema7 = {
 			// 	type: 'number',
 			// },
 		},
-		minItemsList: {
+
+		MinItemsList: {
 			type: 'array',
 			title: 'A list with a minimal number of items',
 			minItems: 3,
@@ -63,7 +70,8 @@ export const schema: JSONSchema7 = {
 				$ref: '#/definitions/Thing',
 			},
 		},
-		defaultsAndMinItems: {
+
+		DefaultsAndMinItems: {
 			type: 'array',
 			title: 'List and item level defaults',
 			minItems: 5,
@@ -73,7 +81,8 @@ export const schema: JSONSchema7 = {
 				default: 'unidentified',
 			},
 		},
-		nestedList: {
+
+		NestedList: {
 			type: 'array',
 			title: 'Nested list',
 			items: {
@@ -128,11 +137,13 @@ export const schema: JSONSchema7 = {
 		// 			type: 'number',
 		// 			default: 42,
 		// 		},
+
 		// 		{
 		// 			title: 'A boolean',
 		// 			type: 'boolean',
 		// 			default: false,
 		// 		},
+
 		// 	],
 
 		// TODO:
@@ -148,31 +159,35 @@ export const schema: JSONSchema7 = {
 export const ui = {};
 
 export const data = {
-	listOfStrings: ['foo', 'bar'],
-	multipleChoicesList: ['foo', 'bar'],
-	fixedItemsList: ['Some text', true, 123],
-	minItemsList: [
-		{
-			name: 'Default name',
-		},
-		{
-			name: 'Default name',
-		},
-		{
-			name: 'Default name',
-		},
+	ListOfStrings: ['foo', 'bar'],
+
+	MultipleChoicesList: ['foo', 'bar'],
+
+	FixedItemsList: ['Some text', true, 123],
+
+	MinItemsList: [
+		{ name: 'Default name A' },
+		{ name: 'Default name B' },
+		{ name: 'Default name C' },
 	],
-	defaultsAndMinItems: [
+
+	DefaultsAndMinItems: [
 		'carp',
 		'trout',
 		'bream',
 		'unidentified',
 		'unidentified',
 	],
-	nestedList: [['lorem', 'ipsum'], ['dolor']],
-	unorderable: ['one', 'two'],
-	copyable: ['one', 'two'],
-	unremovable: ['one', 'two'],
-	noToolbar: ['one', 'two'],
-	fixedNoToolbar: [42, true, 'additional item one', 'additional item two'],
+
+	NestedList: [['lorem', 'ipsum'], ['dolor']],
+
+	Unorderable: ['one', 'two'],
+
+	Copyable: ['one', 'two'],
+
+	Unremovable: ['one', 'two'],
+
+	NoToolbar: ['one', 'two'],
+
+	FixedNoToolbar: [42, true, 'additional item one', 'additional item two'],
 };

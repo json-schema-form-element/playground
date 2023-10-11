@@ -17,18 +17,29 @@ const Blank = {
 	schema: {} as JSONSchema7,
 	ui: {},
 	data: {},
-};
+} as const;
 
-export const Rjsf = {
-	AllFeatures,
-	Nullable,
-	Arrays,
-	Simple,
-	Nested,
-	DateTime,
-	Numbers,
-	AllOf,
-	Blank,
-};
+export const demoContent = {
+	Sink: {
+		AllFeatures,
+		// Nullable,
+		Arrays,
+		Simple,
+		Nested,
+		DateTime,
+		Numbers,
+		// AllOf,
+		Blank,
+	},
+	// Lab: { Tests },
+} as const;
 
-export const Lab = { Tests };
+export type SectionName = keyof typeof demoContent;
+// FIXME: sub-optimal
+export type DemoName =
+	| keyof (typeof demoContent)['Lab']
+	| keyof (typeof demoContent)['Sink'];
+export interface DemoContent {
+	sectionName: SectionName;
+	demoName: DemoName;
+}

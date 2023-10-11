@@ -3,32 +3,38 @@ import type { JSONSchema7 } from 'json-schema';
 export const schema: JSONSchema7 = {
 	type: 'object',
 	title: 'Number fields & widgets',
+
 	properties: {
-		number: {
+		Number: {
 			title: 'Number',
 			type: 'number',
 		},
-		integer: {
+
+		Integer: {
 			title: 'Integer',
 			type: 'integer',
 		},
-		numberEnum: {
+
+		NumberEnum: {
 			type: 'number',
-			title: 'Number enum',
+			title: 'Number enum select',
 			enum: [1, 2, 3],
 		},
-		numberEnumRadio: {
+
+		NumberEnumRadio: {
 			type: 'number',
-			title: 'Number enum',
+			title: 'Number enum radio',
 			enum: [1, 2, 3],
 		},
-		integerRange: {
+
+		IntegerRange: {
 			title: 'Integer range',
 			type: 'integer',
 			minimum: -50,
 			maximum: 50,
 		},
-		integerRangeSteps: {
+
+		IntegerRangeSteps: {
 			title: 'Integer range (by 10)',
 			type: 'integer',
 			minimum: 50,
@@ -39,27 +45,30 @@ export const schema: JSONSchema7 = {
 };
 
 export const ui = {
-	integer: {
+	Integer: {
 		'ui:widget': 'updown',
 	},
-	numberEnumRadio: {
+
+	NumberEnumRadio: {
 		'ui:widget': 'radio',
 		'ui:options': {
 			inline: true,
 		},
 	},
-	integerRange: {
+
+	IntegerRange: {
 		'ui:widget': 'range',
 	},
-	integerRangeSteps: {
+
+	IntegerRangeSteps: {
 		'ui:widget': 'range',
 	},
 };
 
 export const data = {
-	number: 6.14,
-	integer: 42,
-	numberEnum: 2,
-	integerRange: 42,
-	integerRangeSteps: 60,
+	Number: 6.14,
+	Integer: 42,
+	NumberEnum: 2,
+	IntegerRange: 42,
+	IntegerRangeSteps: 60,
 };

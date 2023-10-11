@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import type { UiSchema, JSONSchema7 } from '@jsfe/core';
+import type { UiSchema, JSONSchema7 } from '@jsfe/form';
 
 export const schema: JSONSchema7 = {
 	type: 'object',

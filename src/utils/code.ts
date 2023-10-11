@@ -5,7 +5,7 @@ import {
 	MemberNode,
 	ElementNode,
 } from '@humanwhocodes/momoa';
-import type { Path } from '@jsfe/core';
+import type { Path } from '@jsfe/form';
 
 type Location = MemberNode['loc'];
 

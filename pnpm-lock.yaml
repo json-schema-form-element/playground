@@ -17,22 +17,22 @@ dependencies:
   '@humanwhocodes/momoa':
     specifier: ^3.0.0
     version: 3.0.0
-  '@j_c/jsfe__carbon':
+  '@jsfe/carbon':
     specifier: link:../jsfe/packages/carbon
     version: link:../jsfe/packages/carbon
-  '@j_c/jsfe__form':
+  '@jsfe/form':
     specifier: link:../jsfe/packages/form
     version: link:../jsfe/packages/form
-  '@j_c/jsfe__material':
+  '@jsfe/material':
     specifier: link:../jsfe/packages/material
     version: link:../jsfe/packages/material
-  '@j_c/jsfe__shoelace':
+  '@jsfe/shoelace':
     specifier: link:../jsfe/packages/shoelace
     version: link:../jsfe/packages/shoelace
-  '@j_c/jsfe__system':
+  '@jsfe/system':
     specifier: link:../jsfe/packages/system
     version: link:../jsfe/packages/system
-  '@j_c/jsfe__wired':
+  '@jsfe/wired':
     specifier: link:../jsfe/packages/wired
     version: link:../jsfe/packages/wired
   '@material/material-color-utilities':
@@ -41,6 +41,12 @@ dependencies:
   '@material/web':
     specifier: ^1.0.0
     version: 1.0.0
+  '@nanostores/lit':
+    specifier: ^0.1.5
+    version: 0.1.5(lit@2.7.6)(nanostores@0.9.3)
+  '@nanostores/router':
+    specifier: ^0.11.0
+    version: 0.11.0(nanostores@0.9.3)
   '@shoelace-style/shoelace':
     specifier: ^2.8.0
     version: 2.8.0(@types/react@18.2.21)
@@ -68,6 +74,9 @@ dependencies:
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
+  nanostores:
+    specifier: ^0.9.3
+    version: 0.9.3
   split.js:
     specifier: ^1.6.5
     version: 1.6.5
@@ -895,6 +904,25 @@ packages:
   /@microsoft/tsdoc@0.14.2:
     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
     dev: true
+
+  /@nanostores/lit@0.1.5(lit@2.7.6)(nanostores@0.9.3):
+    resolution: {integrity: sha512-xpnsXK1tTuaPotGNtyRR/6G2RCZHSNztZNo/UHxrzLnq6EfhuhC0ZTw2zj3WZaL9d1sbYXgzNftnUwDclSyU4Q==}
+    peerDependencies:
+      lit: ^2.6.0
+      nanostores: ^0.7 || ^0.8 || ^0.9
+    dependencies:
+      lit: 2.7.6
+      nanostores: 0.9.3
+    dev: false
+
+  /@nanostores/router@0.11.0(nanostores@0.9.3):
+    resolution: {integrity: sha512-QlcneDqXVIsQL3agOS59d9gJQ/9M3qyVOWVttARL5Xvpmovtq91oOYcQxKbLq9i7iitGs5yDJmabe/O3QjWddQ==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      nanostores: ^0.9.0
+    dependencies:
+      nanostores: 0.9.3
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3304,6 +3332,11 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
     dev: true
+
+  /nanostores@0.9.3:
+    resolution: {integrity: sha512-KobZjcVyNndNrb5DAjfs0WG0lRcZu5Q1BOrfTOxokFLi25zFrWPjg+joXC6kuDqNfSt9fQwppyjUBkRPtsL+8w==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
+    dev: false
 
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
