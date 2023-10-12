@@ -5,7 +5,11 @@ export const appInfos = (dark = false) =>
 		<!-- <span>JSON Schema Form Element</span>
 	<span>—</span> -->
 
-		<a href="https://www.npmjs.com/package/@jsfe/form">
+		<a
+			href="https://github.com/json-schema-form-element/jsfe"
+			target="_blank"
+			rel="noreferrer nofollow"
+		>
 			<img
 				alt="Sources on GitHub"
 				src="https://img.shields.io/badge/GH-%20Repository-${dark
@@ -13,7 +17,11 @@ export const appInfos = (dark = false) =>
 					: 'fff?labelColor=eee&logoColor=111'}&logo=github"
 			/>
 		</a>
-		<a href="https://www.npmjs.com/package/@jsfe/form">
+		<a
+			href="https://www.npmjs.com/package/@jsfe/form"
+			target="_blank"
+			rel="noreferrer nofollow"
+		>
 			<img
 				alt="Published on NPM"
 				src="https://img.shields.io/npm/v/@jsfe/form?color=${dark
@@ -21,7 +29,11 @@ export const appInfos = (dark = false) =>
 					: 'fff&labelColor=eee'}"
 			/>
 		</a>
-		<a href="https://www.webcomponents.org/element/@jsfe/jsfe">
+		<a
+			href="https://www.webcomponents.org/element/@jsfe/jsfe"
+			target="_blank"
+			rel="noreferrer nofollow"
+		>
 			<img
 				alt="Published on webcomponents.org"
 				src="https://img.shields.io/badge/webcomponents.org-${dark

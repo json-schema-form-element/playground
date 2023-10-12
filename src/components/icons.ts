@@ -20,11 +20,11 @@ export const icons = {
 
 	Material: html`
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-			<circle cx="12" cy="12" fill="var(--sl-color-primary-400)" r="12" />
-			<path d="m3.6 3.6h16.8v16.8h-16.8z" fill="var(--sl-color-gray-0)" />
+			<circle cx="12" cy="12" fill="var(--sl-color-primary-300)" r="12" />
+			<path d="m3.6 3.6h16.8v16.8h-16.8z" fill="var(--sl-color-gray-50)" />
 			<path
 				d="m20.4 3.6-8.4 16.8-8.4-16.8z"
-				fill="var(--sl-color-primary-700)"
+				fill="var(--sl-color-primary-400)"
 			/>
 			<path d="m0 0h24v24h-24z" fill="none" />
 		</svg>

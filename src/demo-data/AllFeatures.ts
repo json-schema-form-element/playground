@@ -3,6 +3,7 @@ import type { UiSchema, JSONSchema7 } from '@jsfe/form';
 
 export const schema: JSONSchema7 = {
 	title: 'All Features',
+
 	properties: {
 		Object: {
 			title: 'Object type',
@@ -14,12 +15,14 @@ export const schema: JSONSchema7 = {
 					type: 'string',
 					description: 'The help text is from "description".',
 				},
+
 				TextBar: {
 					title: 'Some other -required- text input',
 					type: 'string',
 				},
 			},
 		},
+
 		Primitives: {
 			title: 'Primitive field types',
 			properties: {
@@ -31,6 +34,7 @@ export const schema: JSONSchema7 = {
 							type: 'string',
 							default: 'With default value from schema',
 						},
+
 						StringConstrained: {
 							title: 'String with constraints',
 							type: 'string',
@@ -39,6 +43,23 @@ export const schema: JSONSchema7 = {
 							maxLength: 10,
 							description: 'Only UPPERCASE with 2 to 10 characters is allowed.',
 						},
+
+						Password: {
+							title: 'Password format',
+							type: 'string',
+							format: 'password',
+							minLength: 8,
+							maxLength: 64,
+							// description: 'Make it strong!',
+						},
+
+						Email: {
+							title: 'Email format',
+							type: 'string',
+							format: 'email',
+							minLength: 3,
+						},
+
 						TextArea: {
 							title: 'Text area',
 							description: 'Using UI schema options.',
@@ -46,6 +67,7 @@ export const schema: JSONSchema7 = {
 							minLength: 100,
 							maxLength: 1200,
 						},
+
 						Color: {
 							title: 'Color picker',
 							type: 'string',
@@ -62,12 +84,14 @@ export const schema: JSONSchema7 = {
 							// description: 'Using "ui:widget: textarea" in UI schema.',
 							type: 'number',
 						},
+
 						Integer: {
 							default: 5,
 							title: 'Number (integer)',
 							// description: 'Using "ui:widget: tadditional item oneextarea" in UI schema.',
 							type: 'integer',
 						},
+
 						NumberConstrained: {
 							title: 'Number with constraints',
 							description: 'min + max + multiple of',
@@ -77,12 +101,14 @@ export const schema: JSONSchema7 = {
 							maximum: 100,
 							multipleOf: 10,
 						},
+
 						Range: {
 							title: 'Range with default',
 							default: 28,
 							description: 'Using "ui:widget: range" in UI schema.',
 							type: 'integer',
 						},
+
 						RangeConstrained: {
 							title: 'Range  with constraints',
 							// description: 'Using "ui:widget: textarea" in UI schema.',
@@ -92,6 +118,7 @@ export const schema: JSONSchema7 = {
 							maximum: 50,
 							multipleOf: 25,
 						},
+
 						Rating: {
 							title: 'Rating',
 							description: '10 stars, With half star precision.',
@@ -99,9 +126,11 @@ export const schema: JSONSchema7 = {
 							minimum: 0,
 							maximum: 10,
 							multipleOf: 0.5,
+							default: 5,
 						},
 					},
 				},
+
 				Booleans: {
 					required: ['checkbox', 'radioWithDefault'],
 					properties: {
@@ -110,26 +139,31 @@ export const schema: JSONSchema7 = {
 							type: 'boolean',
 							description: 'Check me!',
 						},
+
 						Switch: {
 							title: 'Switch, enabled by default',
 							type: 'boolean',
 							default: true,
 						},
+
 						Radio: {
 							title: 'Radio',
 							type: 'boolean',
 						},
+
 						RadioWithDefault: {
 							title: 'Radio, with default',
 							type: 'boolean',
 							default: false,
 						},
+
 						ButtonsGroup: {
 							title: 'Buttons group',
 							type: 'boolean',
 						},
 					},
 				},
+
 				Enumerations: {
 					properties: {
 						Selects: {
@@ -141,6 +175,7 @@ export const schema: JSONSchema7 = {
 									type: 'string',
 									enum: ['Ola', 'Hello', 'Bonjour', 'Buongiorno', 'Guten Tag'],
 								},
+
 								Number: {
 									title: 'Number',
 									type: 'number',
@@ -150,6 +185,7 @@ export const schema: JSONSchema7 = {
 								},
 							},
 						},
+
 						Radios: {
 							title: 'Radios group',
 							properties: {
@@ -158,6 +194,7 @@ export const schema: JSONSchema7 = {
 									type: 'string',
 									enum: ['Ola', 'Hello', 'Bonjour', 'Buongiorno', 'Guten Tag'],
 								},
+
 								Number: {
 									title: 'Number',
 									type: 'number',
@@ -167,16 +204,18 @@ export const schema: JSONSchema7 = {
 								},
 							},
 						},
+
 						ButtonsGroup: {
 							title: 'Buttons group',
 							properties: {
 								String: {
 									title: 'String',
 									type: 'string',
-									enum: ['Ola', 'Hello', 'Bonjour', 'Buongiorno', 'Guten Tag'],
-									default: 'Ola',
+									enum: ['Joe', 'William', 'Jack', 'Averell'],
+									default: 'Averell',
 									description: 'With default value set',
 								},
+
 								Number: {
 									title: 'Number',
 									type: 'number',
@@ -186,6 +225,7 @@ export const schema: JSONSchema7 = {
 						},
 					},
 				},
+
 				Date: {
 					title: 'Date and time',
 					properties: {
@@ -195,11 +235,13 @@ export const schema: JSONSchema7 = {
 							format: 'date-time',
 							description: 'Hurry up!',
 						},
+
 						Date: {
 							title: 'Date',
 							type: 'string',
 							format: 'date',
 						},
+
 						Time: {
 							title: 'Time',
 							type: 'string',
@@ -212,8 +254,17 @@ export const schema: JSONSchema7 = {
 
 		Arrays: {
 			properties: {
-				Basic: {
-					title: 'Basic array',
+				Primitives: {
+					type: 'array',
+					title: 'List of strings',
+					items: {
+						type: 'string',
+						default: 'Lorem ipsum dolor amet',
+					},
+				},
+
+				Objects: {
+					title: 'Array of objects',
 					type: 'array',
 					items: {
 						title: 'Sub-object in array',
@@ -222,6 +273,7 @@ export const schema: JSONSchema7 = {
 								title: 'Field Alpha',
 								type: 'string',
 							},
+
 							textB: {
 								title: 'Field Beta',
 								type: 'string',
@@ -239,11 +291,13 @@ export const schema: JSONSchema7 = {
 							type: 'number',
 							default: 42,
 						},
+
 						{
 							title: 'A boolean',
 							type: 'boolean',
 							default: false,
 						},
+
 						{
 							title: 'An object',
 							properties: {
@@ -322,6 +376,29 @@ export const schema: JSONSchema7 = {
 				},
 			},
 		},
+
+		CustomWidgets: {
+			title: 'Custom widgets',
+			properties: {
+				MyCustomWidgetSignature: {
+					title: 'Signature',
+					description: "Let's draw your best signature!",
+					type: 'string',
+				},
+
+				MyCustomWidgetBigButton: {
+					title: 'UUID generator',
+					description: 'Gotta click me for sure!',
+					type: 'string',
+				},
+
+				MyCustomWidgetRte: {
+					title: 'Rich Text Editor',
+					// description: '...',
+					type: 'string',
+				},
+			},
+		},
 	},
 };
 
@@ -332,48 +409,60 @@ export const ui: UiSchema = {
 				'ui:widget': 'textarea',
 				'ui:placeholder': 'This is a placeholder',
 			},
+
 			Color: {
 				'ui:widget': 'color',
 			},
 		},
+
 		Numbers: {
 			Range: {
 				'ui:widget': 'range',
 			},
+
 			RangeConstrained: {
 				'ui:widget': 'range',
 			},
+
 			Rating: {
 				'ui:widget': 'rating',
 			},
 		},
+
 		Booleans: {
 			Switch: {
 				'ui:widget': 'switch',
 			},
+
 			Radio: {
 				'ui:widget': 'radio',
 			},
+
 			RadioWithDefault: {
 				'ui:widget': 'radio',
 			},
+
 			ButtonsGroup: {
 				'ui:widget': 'button',
 			},
 		},
+
 		Enumerations: {
 			Radios: {
 				String: {
 					'ui:widget': 'radio',
 				},
+
 				Number: {
 					'ui:widget': 'radio',
 				},
 			},
+
 			ButtonsGroup: {
 				String: {
 					'ui:widget': 'button',
 				},
+
 				Number: {
 					'ui:widget': 'button',
 				},
@@ -390,10 +479,38 @@ export const ui: UiSchema = {
 			'ui:widget': 'select',
 		},
 	},
+
+	CustomWidgets: {
+		MyCustomWidgetSignature: {
+			'ui:widget': 'myCustomWidgetSignature',
+		},
+
+		MyCustomWidgetBigButton: {
+			'ui:widget': 'myCustomWidgetBigButton',
+			'ui:placeholder': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+		},
+
+		MyCustomWidgetRte: {
+			'ui:widget': 'myCustomWidgetRte',
+		},
+	},
 };
 
 export const data = {
 	Arrays: {
+		Primitives: [['Try me!']],
+		Objects: [{}],
 		PrepopulatedNested: [['Hello', 'Ola']],
+	},
+
+	Primitives: {
+		Strings: {
+			Password: 'Science avec patience',
+			Email: 'foo@bar.home.arpa',
+		},
+	},
+
+	CustomWidgets: {
+		// MyCustomWidgetRte: '<strong>Hello</strong>',
 	},
 };

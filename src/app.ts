@@ -383,6 +383,7 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 	#settings = () => html`
 		<div class="settings-list">
 			<sl-radio-group
+				class="theme-selector"
 				.value=${themes.libraries[0][0]}
 				label="Component libraries"
 				@sl-change=${(event: Event) => {
@@ -398,11 +399,11 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 						html` <sl-radio value=${v}
 							><sl-tooltip
 								content=${ifDefined(
-									library !== 'Shoelace' ? 'Partial implementation' : undefined,
+									library !== 'Shoelace' ? 'Partial' : 'Canonical',
 								)}
 								placement="right"
-								.disabled=${library === 'Shoelace'}
 							>
+								<!-- .disabled=${library === 'Shoelace'} -->
 								<div class="theme-label">
 									${icons[library]
 										? html`<span class="uilib-icon">${icons[library]}</span>`

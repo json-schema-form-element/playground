@@ -1,3 +1,5 @@
+import * as customWidgets from './demo-data/custom-widgets';
+
 /* eslint-disable import/no-duplicates */
 /* eslint-disable import/first */
 /* prettier-ignore */
@@ -47,11 +49,11 @@ import { widgets as carbonWidgets } from '@jsfe/carbon';
 import { widgets as systemWidgets } from '@jsfe/system';
 
 export const widgets = {
-	shoelace: shoelaceWidgets,
-	material: materialWidgets,
-	wired: wiredWidgets,
-	carbon: carbonWidgets,
-	system: systemWidgets,
+	shoelace: { ...shoelaceWidgets, ...customWidgets },
+	material: { ...materialWidgets, ...customWidgets },
+	wired: { ...wiredWidgets, ...customWidgets },
+	carbon: { ...carbonWidgets, ...customWidgets },
+	system: { ...systemWidgets, ...customWidgets },
 };
 
 // import { styles as jsfeStyles } from '@jsfe/form/jss';

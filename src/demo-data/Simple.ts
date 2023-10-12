@@ -14,32 +14,48 @@ export const data = {
 export const schema: JSONSchema7 = {
 	title: 'A registration form',
 	description: 'A simple form example.',
+
 	type: 'object',
 	required: ['firstName', 'lastName'],
+
 	properties: {
-		firstName: {
+		FirstName: {
 			type: 'string',
 			title: 'First name',
 			default: 'Chuck',
 		},
-		lastName: {
+
+		LastName: {
 			type: 'string',
 			title: 'Last name',
 		},
-		age: {
+
+		Age: {
 			type: 'integer',
 			title: 'Age',
+			minimum: 13,
+			maximum: 150,
 		},
-		bio: {
+
+		Bio: {
 			type: 'string',
 			title: 'Bio',
 		},
-		password: {
+
+		Email: {
+			title: 'Email',
+			format: 'email',
+			type: 'string',
+		},
+
+		Password: {
 			type: 'string',
 			title: 'Password',
+			format: 'password',
 			minLength: 3,
 		},
-		telephone: {
+
+		Telephone: {
 			type: 'string',
 			title: 'Telephone',
 			minLength: 10,
@@ -48,35 +64,43 @@ export const schema: JSONSchema7 = {
 };
 
 export const ui = {
-	firstName: {
-		'ui:autofocus': true,
-		'ui:emptyValue': '',
-		'ui:placeholder':
-			'ui:emptyValue causes this field to always be valid despite being required',
-		'ui:autocomplete': 'family-name',
-		'ui:enableMarkdownInDescription': true,
-		'ui:description':
-			'Make text **bold** or *italic*. Take a look at other options [here](https://probablyup.com/markdown-to-jsx/).',
+	FirstName: {
+		// 'ui:autofocus': true,
+		// 'ui:emptyValue': '',
+		// 'ui:placeholder':
+		// 	'ui:emptyValue causes this field to always be valid despite being required',
+		// 'ui:autocomplete': 'family-name',
+		// 'ui:enableMarkdownInDescription': true,
+		// 'ui:description':
+		// 	'Make text **bold** or *italic*. Take a look at other options [here](https://probablyup.com/markdown-to-jsx/).',
 	},
-	lastName: {
-		'ui:autocomplete': 'given-name',
-		'ui:enableMarkdownInDescription': true,
-		'ui:description':
-			'Make things **bold** or *italic*. Embed snippets of `code`. <small>And this is a small texts.</small> ',
+
+	LastName: {
+		// 'ui:autocomplete': 'given-name',
+		// 'ui:enableMarkdownInDescription': true,
+		// 'ui:description':
+		// 	'Make things **bold** or *italic*. Embed snippets of `code`. <small>And this is a small texts.</small> ',
 	},
-	age: {
-		'ui:widget': 'updown',
-		'ui:title': 'Age of person',
-		'ui:description': '(earth year)',
+
+	Age: {
+		// 'ui:widget': 'updown',
+		// 'ui:title': 'Age of person',
+		// 'ui:description': '(earth year)',
 	},
-	bio: {
+
+	Bio: {
 		'ui:widget': 'textarea',
+		'ui:placeholder':
+			'Il était une fois est une expression qui, dans la tradition populaire, introduit un conte. Elle apparaît dans le titre de plusieurs œuvres artistiques ou littéraires.',
 	},
-	password: {
-		'ui:widget': 'password',
-		'ui:help': 'Hint: Make it strong!',
+
+	Password: {
+		// 'ui:widget': 'password',
+		// 'ui:help': 'Hint: Make it strong!',
+		// 'ui:placeholder': '••••••••••••••••••••••',
 	},
-	telephone: {
+
+	Telephone: {
 		'ui:options': {
 			inputType: 'tel',
 		},
