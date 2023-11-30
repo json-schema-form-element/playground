@@ -15,7 +15,7 @@ html {
 }
 
 body {
-	height: 100vh;
+	// height: 100vh;
 	padding: 0;
 	margin: 0;
 }
@@ -23,5 +23,66 @@ body {
 html.sl-theme-dark {
 	body {
 		background-color: var(--sl-color-neutral-0);
+	}
+}
+
+// --- for video recording
+
+html.recording {
+	$ratio: calc(1 + 1 / 2.75);
+	$app-width: calc(1920px / $ratio);
+	$app-height: calc(1080px / $ratio - 2rem);
+
+	body {
+		padding: 4rem 2rem;
+		height: 100vh;
+
+		display: flex;
+		// place-items: center;
+		justify-content: center;
+		align-items: center;
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			// width: calc($app-width + 4rem);
+			// height: calc($app-height + 8rem);
+			width: 100%;
+			height: 100%;
+			content: '';
+			// background: radial-gradient(
+			// 	ellipse 50% 100%,
+			// 	var(--sl-color-neutral-400),
+			// 	var(--sl-color-neutral-100)
+			// );
+			// background: radial-gradient(
+			// 	ellipse at center,
+			// 	var(--sl-color-neutral-50),
+			// 	var(--sl-color-neutral-500)
+			// );
+			background-color: var(--sl-color-neutral-500);
+		}
+	}
+
+	// z-index: 1;
+	jsfe-playground {
+		.main-nav {
+			display: none;
+		}
+
+		--app-width: #{$app-width};
+		--app-height: #{$app-height};
+		margin-top: -0.25rem;
+
+		// display: none;
+		overflow: hidden;
+		background-color: var(--sl-color-neutral-0);
+		outline: 4px solid var(--sl-color-neutral-200);
+		border-radius: var(--sl-border-radius-x-large);
+		box-shadow: var(--sl-shadow-medium), var(--sl-shadow-medium),
+			var(--sl-shadow-x-large), var(--sl-shadow-x-large),
+			var(--sl-shadow-x-large);
 	}
 }

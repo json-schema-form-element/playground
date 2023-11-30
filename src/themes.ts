@@ -1,7 +1,6 @@
-import * as customWidgets from './demo-data/custom-widgets';
-
 /* eslint-disable import/no-duplicates */
 /* eslint-disable import/first */
+
 /* prettier-ignore */
 export const colors = [
 		'Gray', 'Red', 'Orange', 'Amber', 'Yellow', 'Lime', 'Green', 'Emerald',
@@ -14,6 +13,7 @@ export const libraries = [
 	['material', 'Material'],
 	['carbon', 'Carbon'],
 	['wired', 'Wired'],
+	['spectrum', 'Spectrum'],
 	['system', 'System'],
 ] as const;
 
@@ -43,13 +43,16 @@ export const slColorToMwc = {
 // ----
 
 import { widgets as shoelaceWidgets } from '@jsfe/shoelace';
+import { widgets as spectrumWidgets } from '@jsfe/spectrum';
 import { widgets as materialWidgets } from '@jsfe/material';
 import { widgets as wiredWidgets } from '@jsfe/wired';
 import { widgets as carbonWidgets } from '@jsfe/carbon';
 import { widgets as systemWidgets } from '@jsfe/system';
+import * as customWidgets from './demo-data/custom-widgets';
 
 export const widgets = {
 	shoelace: { ...shoelaceWidgets, ...customWidgets },
+	spectrum: { ...spectrumWidgets, ...customWidgets },
 	material: { ...materialWidgets, ...customWidgets },
 	wired: { ...wiredWidgets, ...customWidgets },
 	carbon: { ...carbonWidgets, ...customWidgets },
@@ -58,43 +61,64 @@ export const widgets = {
 
 // import { styles as jsfeStyles } from '@jsfe/form/jss';
 import { styles as jsfeShoelaceStyles } from '@jsfe/shoelace/jss';
+import { styles as jsfeSpectrumStyles } from '@jsfe/spectrum/jss';
 import { styles as jsfeMaterialStyles } from '@jsfe/material/jss';
 import { styles as jsfeWiredStyles } from '@jsfe/wired/jss';
 import { styles as jsfeCarbonStyles } from '@jsfe/carbon/jss';
+import { styles as jsfeSystemStyles } from '@jsfe/system/jss';
 
 export const styleSheets = [
 	// jsfeStyles,
 	jsfeShoelaceStyles,
+	jsfeSpectrumStyles,
 	jsfeMaterialStyles,
 	jsfeWiredStyles,
 	jsfeCarbonStyles,
+	jsfeSystemStyles,
 ];
 
 // ---- App - VENDOR
 
 import '@shoelace-style/shoelace/dist/components/alert/alert.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
-
-// import '@shoelace-style/shoelace/dist/components/switch/switch.js';
 import '@shoelace-style/shoelace/dist/components/divider/divider.js';
-// import '@shoelace-style/shoelace/dist/components/split-panel/split-panel.js';
 import '@shoelace-style/shoelace/dist/components/breadcrumb/breadcrumb.js';
 import '@shoelace-style/shoelace/dist/components/breadcrumb-item/breadcrumb-item.js';
 import '@shoelace-style/shoelace/dist/components/radio-group/radio-group.js';
 import '@shoelace-style/shoelace/dist/components/radio/radio.js';
-// import '@shoelace-style/shoelace/dist/components/radio-button/radio-button.js';
-// import '@shoelace-style/shoelace/dist/components/drawer/drawer.js';
 import '@shoelace-style/shoelace/dist/components/tree/tree.js';
 import '@shoelace-style/shoelace/dist/components/tree-item/tree-item.js';
 import '@shoelace-style/shoelace/dist/components/switch/switch.js';
 import '@shoelace-style/shoelace/dist/components/select/select.js';
 import '@shoelace-style/shoelace/dist/components/option/option.js';
-
 import '@shoelace-style/shoelace/dist/components/tab/tab.js';
 import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js';
 import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 
+// import '@shoelace-style/shoelace/dist/components/switch/switch.js';
+// import '@shoelace-style/shoelace/dist/components/split-panel/split-panel.js';
+// import '@shoelace-style/shoelace/dist/components/radio-button/radio-button.js';
+// import '@shoelace-style/shoelace/dist/components/drawer/drawer.js';
+
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
 
 setBasePath('/shoelace');
+
+// Spectrum
+
+// import '@spectrum-web-components/bundle/elements.js';
+
+import '@spectrum-web-components/theme/sp-theme.js';
+import '@spectrum-web-components/theme/theme-dark.js';
+import '@spectrum-web-components/theme/theme-light.js';
+import '@spectrum-web-components/theme/scale-large.js';
+
+//
+
+// import '@spectrum-web-components/theme/scale-medium.js';
+// import '@spectrum-web-components/theme/src/themes.js';
+
+// import '@spectrum-web-components/icon/sp-icon.js';
+// import '@spectrum-web-components/icons/sp-icons-large.js';
+// import '@spectrum-web-components/icons/sp-icons-medium.js';

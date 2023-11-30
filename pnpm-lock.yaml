@@ -29,6 +29,9 @@ dependencies:
   '@jsfe/shoelace':
     specifier: link:../jsfe/packages/shoelace
     version: link:../jsfe/packages/shoelace
+  '@jsfe/spectrum':
+    specifier: link:../jsfe/packages/spectrum
+    version: link:../jsfe/packages/spectrum
   '@jsfe/system':
     specifier: link:../jsfe/packages/system
     version: link:../jsfe/packages/system
@@ -50,6 +53,9 @@ dependencies:
   '@shoelace-style/shoelace':
     specifier: ^2.8.0
     version: 2.8.0(@types/react@18.2.21)
+  '@spectrum-web-components/theme':
+    specifier: ^0.39.1
+    version: 0.39.1
   '@types/json-schema':
     specifier: ^7.0.12
     version: 7.0.12
@@ -1048,6 +1054,25 @@ packages:
       qr-creator: 1.0.0
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /@spectrum-web-components/base@0.39.1:
+    resolution: {integrity: sha512-nJ65NUxgZ45cWNOgHLtyoRecPzutTmx8496y7qR4+dYH/qR5asVji/jRLzR/TdlOkNsmoxOCjj5ao+BsURmJnw==}
+    dependencies:
+      lit: 2.7.6
+    dev: false
+
+  /@spectrum-web-components/styles@0.39.1:
+    resolution: {integrity: sha512-xktwTxA+XKkkuH44b1O5nUEBOc3nTBlURKL4lC7JBmtqk/DHRwiXsOj94XSeAKsroR71BCPE7gDC3aEkhsfC8g==}
+    dependencies:
+      '@spectrum-web-components/base': 0.39.1
+    dev: false
+
+  /@spectrum-web-components/theme@0.39.1:
+    resolution: {integrity: sha512-RcHrngyCfPVfrqVCn2JTauhSzmV0W7IYDVyYdaUJnLxbq7iN21jNRKoCCS9Lmdzt39Mtg0crAReKl6aTkDPMEg==}
+    dependencies:
+      '@spectrum-web-components/base': 0.39.1
+      '@spectrum-web-components/styles': 0.39.1
     dev: false
 
   /@types/argparse@1.0.38:

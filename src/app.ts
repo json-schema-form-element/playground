@@ -75,6 +75,8 @@ onMount($router, () => {
 
 // -----------------------------------------------------------------------------
 
+const RECORDING = false;
+
 type Tab = 'Schema' | 'Data' | 'UI schema';
 
 @customElement('jsfe-playground')
@@ -108,6 +110,8 @@ export class JsfePlayground extends LitElement {
 	@state() private _compactMode = false;
 
 	firstUpdated() {
+		if (RECORDING) document.documentElement.classList.add('recording');
+
 		this.#bindThemeSwitcher();
 
 		this.#bindResponsive();
@@ -149,8 +153,9 @@ export class JsfePlayground extends LitElement {
 		this._colorScheme = this._colorScheme === 'dark' ? 'light' : 'dark';
 
 		document.documentElement.classList.toggle('sl-theme-dark');
-		document.documentElement.classList.toggle('cds-theme-dark');
 		document.documentElement.classList.toggle('sl-theme-light');
+
+		document.documentElement.classList.toggle('cds-theme-dark');
 		document.documentElement.classList.toggle('cds-theme-light');
 
 		this._applyMwcColor();
@@ -177,12 +182,14 @@ export class JsfePlayground extends LitElement {
 				this._colorScheme = 'dark';
 				document.documentElement.classList.remove('sl-theme-light');
 				document.documentElement.classList.add('sl-theme-dark');
+
 				document.documentElement.classList.remove('cds-theme-light');
 				document.documentElement.classList.add('cds-theme-dark');
 			} else {
 				this._colorScheme = 'light';
 				document.documentElement.classList.add('sl-theme-light');
 				document.documentElement.classList.remove('sl-theme-dark');
+
 				document.documentElement.classList.add('cds-theme-light');
 				document.documentElement.classList.remove('cds-theme-dark');
 			}
@@ -209,7 +216,7 @@ export class JsfePlayground extends LitElement {
 		});
 		Split(
 			[this.#splitRefs.bottomLeft.value!, this.#splitRefs.bottomRight.value!],
-			{ ...common },
+			{ ...common, sizes: [60, 40] },
 		);
 	}
 
@@ -382,6 +389,7 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 
 	#settings = () => html`
 		<div class="settings-list">
+			<h3 class="title">Settings</h3>
 			<sl-radio-group
 				class="theme-selector"
 				.value=${themes.libraries[0][0]}
@@ -471,6 +479,8 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 						// console.log(sEvent.dataset);
 						const { demoName, sectionName } = sEvent.dataset;
 
+						// TODO: Scroll back to top
+
 						if (
 							sectionName &&
 							demoName &&
@@ -509,7 +519,10 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 												data-section-name=${sectionName}
 												data-demo-name=${demoName}
 											>
-												${demoName}&nbsp;
+												<!-- <sl-icon name="file-ruled"> </sl-icon> -->
+												${demoContent[sectionName as SectionName][
+													demoName as DemoName
+												].schema?.title}&nbsp;
 												${'experimental' in
 												demoContent[sectionName as SectionName][
 													demoName as DemoName
@@ -581,7 +594,6 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 							${ref(this.#splitRefs.bottomRight)}
 							class="assistant bottom-right settings split"
 						>
-							<h3 class="title">Settings</h3>
 							${this.#settings()}
 						</section>
 					</div>
@@ -589,7 +601,7 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 			</aside>`;
 
 	render() {
-		return html` <div class="app">
+		return html` <div class="app ${RECORDING ? 'recording' : undefined}">
 			<!-- $ {this._compactMode} -->
 			<div class="wrapper">
 				<div class="demo-switcher">
@@ -611,7 +623,18 @@ ${unsafeHTML(`${highlighted.value}\n ` /* Forcefinal line */)}</pre
 							${appInfos(this._colorScheme === 'dark')}
 						</div>
 					</nav>
-					<main>${this.#form()}</main>
+					<main>
+						${
+							this._selectedTheme === 'spectrum'
+								? // NOTE: "sp-theme" wrapper is cumbersome, but we don't have a choice
+								  html` <sp-theme scale="large" color=${this._colorScheme}>
+										${this.#form()}
+								  </sp-theme>`
+								: this.#form()
+						}
+							<!--  -->
+						</sp-theme>
+					</main>
 				</div>
 
 				${this.#assistants()}
