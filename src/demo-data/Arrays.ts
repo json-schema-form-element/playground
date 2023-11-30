@@ -166,9 +166,9 @@ export const data = {
 	FixedItemsList: ['Some text', true, 123],
 
 	MinItemsList: [
-		{ name: 'Default name A' },
-		{ name: 'Default name B' },
-		{ name: 'Default name C' },
+		{ Name: 'Default name A' },
+		{ Name: 'Default name B' },
+		{ Name: 'Default name C' },
 	],
 
 	DefaultsAndMinItems: [

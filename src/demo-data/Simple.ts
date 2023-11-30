@@ -3,20 +3,21 @@ import type { JSONSchema7 } from 'json-schema';
 
 // TODO: Typings with JSON Schema to TS
 export const data = {
-	firstName: 'Chuck',
-	lastName: 'Norris',
-	age: 75,
-	bio: 'Roundhouse kicking asses since 1940',
-	password: 'noneed',
-	telephone: '1-800-KICKASS',
+	FirstName: 'Chuck',
+	LastName: 'Norris',
+	Age: new Date().getFullYear() - 1940,
+	Email: 'chuck@norris.home.arpa',
+	Bio: 'Roundhouse kicking asses since 1940',
+	Password: 'noneed',
+	Telephone: '1-800-KICKASS',
 };
 
 export const schema: JSONSchema7 = {
-	title: 'A registration form',
+	title: 'Sign-up form',
 	description: 'A simple form example.',
 
 	type: 'object',
-	required: ['firstName', 'lastName'],
+	required: ['FirstName', 'LastName'],
 
 	properties: {
 		FirstName: {

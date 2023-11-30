@@ -2,7 +2,7 @@ import type { JSONSchema7 } from 'json-schema';
 
 export const schema: JSONSchema7 = {
 	type: 'object',
-	title: 'Number fields & widgets',
+	title: 'Numbers',
 
 	properties: {
 		Number: {
@@ -13,6 +13,7 @@ export const schema: JSONSchema7 = {
 		Integer: {
 			title: 'Integer',
 			type: 'integer',
+			default: 42,
 		},
 
 		NumberEnum: {
@@ -24,7 +25,14 @@ export const schema: JSONSchema7 = {
 		NumberEnumRadio: {
 			type: 'number',
 			title: 'Number enum radio',
-			enum: [1, 2, 3],
+			enum: [1, 2, 3, 4, 5],
+			default: 2,
+		},
+
+		NumberEnumButtonGroup: {
+			type: 'number',
+			title: 'Number button group',
+			enum: [1, 2, 3, 4, 5],
 		},
 
 		IntegerRange: {
@@ -32,6 +40,7 @@ export const schema: JSONSchema7 = {
 			type: 'integer',
 			minimum: -50,
 			maximum: 50,
+			default: 42,
 		},
 
 		IntegerRangeSteps: {
@@ -56,6 +65,10 @@ export const ui = {
 		},
 	},
 
+	NumberEnumButtonGroup: {
+		'ui:widget': 'button',
+	},
+
 	IntegerRange: {
 		'ui:widget': 'range',
 	},
@@ -67,8 +80,6 @@ export const ui = {
 
 export const data = {
 	Number: 6.14,
-	Integer: 42,
 	NumberEnum: 2,
-	IntegerRange: 42,
 	IntegerRangeSteps: 60,
 };

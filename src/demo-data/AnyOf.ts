@@ -2,6 +2,7 @@
 import type { UiSchema, JSONSchema7 } from '@jsfe/form';
 
 export const schema: JSONSchema7 = {
+	title: 'Any of',
 	type: 'object',
 	properties: {
 		age: {

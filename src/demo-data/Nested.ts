@@ -2,35 +2,35 @@
 import type { JSONSchema7 } from 'json-schema';
 
 export const schema: JSONSchema7 = {
-	title: 'A list of tasks',
+	title: 'To-do list',
 	type: 'object',
-	required: ['title'],
+	required: ['Title'],
 	properties: {
-		title: {
+		Title: {
 			type: 'string',
 			title: 'Task list title',
 		},
-		tasks: {
+		Tasks: {
 			type: 'array',
 			title: 'Tasks',
 			items: {
 				type: 'object',
-				required: ['title'],
+				required: ['Title'],
 				properties: {
-					title: {
-						type: 'string',
+					Title: {
 						title: 'Title',
 						description: 'A sample title',
-					},
-					details: {
 						type: 'string',
+					},
+					Details: {
 						title: 'Task details',
 						description: 'Enter the task details',
+						type: 'string',
 					},
-					done: {
-						type: 'boolean',
+					Done: {
 						title: 'Done?',
 						default: false,
+						type: 'boolean',
 					},
 				},
 			},
@@ -41,19 +41,19 @@ export const schema: JSONSchema7 = {
 export const ui = {};
 
 export const data = {
-	title: 'My current tasks',
-	tasks: [
+	Title: 'My current tasks',
+	Tasks: [
 		{
-			title: 'My first task',
-			details:
+			Title: 'My first task',
+			Details:
 				'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-			done: true,
+			Done: true,
 		},
 		{
-			title: 'My second task',
-			details:
+			Title: 'My second task',
+			Details:
 				'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',
-			done: false,
+			Done: false,
 		},
 	],
 };

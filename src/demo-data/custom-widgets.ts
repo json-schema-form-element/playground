@@ -6,9 +6,13 @@ import type { Widgets } from '@jsfe/form';
 
 // import '@vaadin/rich-text-editor';
 // import '@vaadin/rich-text-editor/theme/material/vaadin-rich-text-editor.js';
-import '@vaadin/rich-text-editor/theme/lumo/vaadin-rich-text-editor.js';
+// import '@vaadin/rich-text-editor/theme/lumo/vaadin-rich-text-editor.js';
 
 import type { RichTextEditorValueChangedEvent } from '@vaadin/rich-text-editor';
+
+import('@vaadin/rich-text-editor/theme/lumo/vaadin-rich-text-editor.js').catch(
+	() => null,
+);
 // import '@vaadin/rich-text-editor/src/vaadin-rich-text-editor.js';
 
 export const myCustomWidgetRte: Widgets['text'] = (options) => html`

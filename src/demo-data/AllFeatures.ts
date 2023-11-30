@@ -2,13 +2,13 @@
 import type { UiSchema, JSONSchema7 } from '@jsfe/form';
 
 export const schema: JSONSchema7 = {
-	title: 'All Features',
+	title: 'All features',
 
 	properties: {
 		Object: {
 			title: 'Object type',
 			description: 'Nests each property to a field in a fieldset.',
-			required: ['textBar'],
+			required: ['TextBar'],
 			properties: {
 				TextFoo: {
 					title: 'Some text input',
@@ -27,7 +27,7 @@ export const schema: JSONSchema7 = {
 			title: 'Primitive field types',
 			properties: {
 				Strings: {
-					required: ['stringConstrained'],
+					required: ['StringConstrained'],
 					properties: {
 						SimpleString: {
 							title: 'Simple inline string',
@@ -132,12 +132,18 @@ export const schema: JSONSchema7 = {
 				},
 
 				Booleans: {
-					required: ['checkbox', 'radioWithDefault'],
+					required: ['Checkbox', 'RadioWithDefault'],
 					properties: {
 						Checkbox: {
 							title: 'Checkbox (default)',
 							type: 'boolean',
 							description: 'Check me!',
+						},
+
+						CheckboxWithData: {
+							title: 'Checkbox',
+							type: 'boolean',
+							description: 'With existing value.',
 						},
 
 						Switch: {
@@ -167,7 +173,7 @@ export const schema: JSONSchema7 = {
 				Enumerations: {
 					properties: {
 						Selects: {
-							required: ['number'],
+							required: ['Number'],
 							title: 'Select menu (default)',
 							properties: {
 								String: {
@@ -507,6 +513,11 @@ export const data = {
 		Strings: {
 			Password: 'Science avec patience',
 			Email: 'foo@bar.home.arpa',
+		},
+
+		Booleans: {
+			CheckboxWithData: true,
+			ButtonsGroup: false,
 		},
 	},
 

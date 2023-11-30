@@ -7,14 +7,17 @@ import * as Simple from './Simple.js';
 import * as Nested from './Nested.js';
 import * as DateTime from './DateTime.js';
 import * as Numbers from './Numbers.js';
-import * as AllOf from './AllOf.js';
+// import * as AllOf from './AllOf.js';
 // export * as OneOf from './OneOf.js';
-// export * as AnyOf from './AnyOf.js';
+import * as AnyOf from './AnyOf.js';
 // export * as References from './References.js';
-import * as Tests from './Tests.js';
+// import * as Tests from './Tests.js';
+import * as UiSchemas from './UiSchemas.js';
 
 const Blank = {
-	schema: {} as JSONSchema7,
+	schema: {
+		title: 'Blank',
+	} as JSONSchema7,
 	ui: {},
 	data: {},
 } as const;
@@ -29,7 +32,9 @@ export const demoContent = {
 		DateTime,
 		Numbers,
 		// AllOf,
-		Blank,
+		// Blank,
+		// AnyOf,
+		UiSchemas,
 	},
 	// Lab: { Tests },
 } as const;
